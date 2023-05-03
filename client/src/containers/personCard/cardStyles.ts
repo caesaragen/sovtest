@@ -19,7 +19,7 @@ width: 100%;
 `;
 export const Card = styled.div`
   width: calc(25% - 0.75rem);
-  background-color: '#FFFFFF';
+  background-color:  ${props => props.theme.colors.white};
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   padding: 1rem;
@@ -41,12 +41,12 @@ height: '100%',
 `;
 
 export const CardTitle = styled.h2`
-  font-size: '16px';
+  font-size: ${props => props.theme.fontSizes.md};
   font-weight: 700;
   margin-bottom: 0.5rem;
 `;
 
 export const CardText = styled.p`
-  font-size: '14px';
+  font-size: ${props => props.theme.fontSizes.sm};
   margin: 0.5rem 0;
 `;

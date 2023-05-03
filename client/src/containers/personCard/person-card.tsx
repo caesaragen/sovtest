@@ -1,5 +1,5 @@
 import React from "react";
-import { CardContainer, Card, CardContent, CardText, CardTitle } from "./cardStyles";
+import { Card, CardContent, CardText, CardTitle } from "./cardStyles";
 
 
 interface CardProps {

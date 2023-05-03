@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PersonCard from "../containers/personCard/person-card";
 import { mockdata } from '../data/mockdata';
 import { CardContainer } from "../containers/personCard/cardStyles";
+import Header from "../components/Header/Header";
 
 
 interface Person {
@@ -16,7 +17,9 @@ const People: React.FC = () => {
   const [peopleData, setPeopleData] = useState(mockdata)
 
   return (
-    <CardContainer>
+    <>
+    <Header/>
+        <CardContainer>
       {
         peopleData.map((person: Person, index: number) => {
           return (
@@ -32,6 +35,7 @@ const People: React.FC = () => {
         })
       }
     </CardContainer>
+    </>
   );
 };
 
