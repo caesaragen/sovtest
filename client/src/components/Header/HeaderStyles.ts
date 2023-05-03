@@ -10,7 +10,7 @@ export const HeaderDiv = styled.div`
   box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.15);
   padding: 5px 30px;
   min-height: 80px;
-  background-color: ${props => props.theme.colors.white};
+  background-color: ${props => props.theme.colors.transparent};
 `;
 
 
@@ -35,7 +35,7 @@ export const HomeButton = styled.div`
   color: ${props => props.theme.colors.primary};
   align-items: center;
   &:hover {
-    color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.lightsaber};
   }
 `;
 

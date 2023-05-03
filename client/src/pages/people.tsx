@@ -18,7 +18,6 @@ const People: React.FC = () => {
 
   return (
     <>
-    <Header/>
         <CardContainer>
       {
         peopleData.map((person: Person, index: number) => {

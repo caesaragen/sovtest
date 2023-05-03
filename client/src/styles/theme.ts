@@ -7,6 +7,8 @@ declare module 'styled-components' {
       light: string;
       dark: string;
       white: string;
+      transparent: string;
+      lightsaber: string;
     };
     fontSizes: {
       xs: string;
@@ -26,10 +28,12 @@ declare module 'styled-components' {
 const theme: DefaultTheme = {
   colors: {
     primary: '#E83F33',
-    secondary: '#333333',
+    secondary: '#d3d7de',
     light: '#F8F8F8',
     dark: '#333333',
     white: '#FFFFFF',
+    transparent: '#000000',
+    lightsaber: '#2E67F8'
   },
   fontSizes: {
     xs: '12px',
