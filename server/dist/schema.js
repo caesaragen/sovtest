@@ -1,7 +1,5 @@
-
 import gql from 'graphql-tag';
-
-const typeDefs = gql`
+const typeDefs = gql `
   type Person {
     name: String
     height: String
@@ -22,5 +20,4 @@ const typeDefs = gql`
     person(name: String!): Person
   }
 `;
-
 export default typeDefs;
