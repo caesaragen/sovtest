@@ -21,7 +21,7 @@ const resolvers = {
         getPerson: async (_: any, { name }: { name: string }, { dataSources }: { dataSources: { starWarsAPI: StarWarsAPI } }): Promise<Result> => {
             try {
                 const response = await dataSources.starWarsAPI.getPerson(name);
-                const person = response[0] || {}; // Extract first object from response array, default to empty object
+                const person = response[0] || {}; 
                 console.log(person);
                 return {
                     name: person.name,
