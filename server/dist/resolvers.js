@@ -15,7 +15,7 @@ const resolvers = {
                 })),
             };
         },
-        person: async (_, { name }, { dataSources }) => {
+        getPerson: async (_, { name }, { dataSources }) => {
             const person = await dataSources.starWarsAPI.getPerson(name);
             return {
                 count: 1,

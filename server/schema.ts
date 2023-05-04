@@ -19,7 +19,7 @@ const typeDefs = gql`
 
   type Query {
     allPeople(page: Int): PeopleResult
-    person(name: String!): Person
+    getPerson(name: String!): Person
   }
 `;
 

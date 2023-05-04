@@ -5,12 +5,22 @@ class StarWarsAPI extends RESTDataSource {
         this.baseURL = 'https://swapi.dev/api/';
     }
     async getAllPeople(page) {
-        const response = await this.get('people', { page });
-        return response;
+        try {
+            const response = await this.get(`people?page=${page}`);
+            return response;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
     }
     async getPerson(name) {
-        const response = await this.get('people', { search: name });
-        return response.results[0];
+        try {
+            const response = await this.get(`people?search=${name}`);
+            return response.results;
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
     }
 }
 export default StarWarsAPI;
