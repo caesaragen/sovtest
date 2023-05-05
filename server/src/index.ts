@@ -27,4 +27,4 @@ const { url } = await startStandaloneServer(server, {
     },
 });
 
-console.log(`🚀  Server ready at ${url}`);
+console.log(`Server running at ${url}`);
