@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import PersonCard from "../containers/personCard/person-card";
 import styled from "styled-components";
 import { mockdata } from '../data/mockdata';
@@ -7,6 +7,7 @@ import { useQuery, gql } from '@apollo/client';
 import { Person } from "../__generated__/graphql";
 import { PaginationContainer, PageButton } from "../components/Pagination/Pagination";
 import SearchBox from "../components/searchBox/SearchBox";
+import Loader from "../components/Loader/Loader";
 
 const GET_PEOPLE = gql(`
   query AllPeople($page: Int) {
@@ -40,11 +41,13 @@ const People: React.FC = () => {
     setPage(newPage);
   };
 
-  if (loading) return <p>Loading...</p>;
+
+
+  if (loading) return <Loader color="red" size={150}/>;
   if (error) return <p>Error :</p>;
 
   return (
-    <>
+    <Suspense fallback={Loader}>
       <SearchBox onSearch={handleSearch} />
       <CardContainer>
         {searchResults.length
@@ -81,7 +84,7 @@ const People: React.FC = () => {
           )}
         </PaginationContainer>
       </CardContainer>
-    </>
+    </Suspense>
   );
 };
 
