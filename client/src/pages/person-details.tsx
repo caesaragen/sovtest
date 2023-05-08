@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { PersonContext } from '../context/PersonContext';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {}
 
@@ -12,6 +13,7 @@ const Container = styled.div`
   background-color:  ${props => props.theme.colors.secondary};
   width: calc(100% - 0.75rem);
   border-radius: 0.5rem;
+  padding: 1rem;
 `;
 
 const Detail = styled.div`
@@ -21,11 +23,24 @@ const Detail = styled.div`
 const Label = styled.span`
   font-weight: bold;
 `;
-
+const Button = styled.button`
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background-color: ${props => props.theme.colors.primary};
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+`;
 const PersonDetails: React.FC<Props> = () => {
   const { selectedPerson } = useContext(PersonContext);
-  
-
+  const navigate = useNavigate();
+  const handleBackButtonClick = () => {
+    navigate(-1);
+  };
   return (
     <Container>
       <h1>Person Details</h1>
@@ -44,6 +59,7 @@ const PersonDetails: React.FC<Props> = () => {
       <Detail>
         <Label>Homeworld:</Label> {selectedPerson.homeworld}
       </Detail>
+      <Button onClick={handleBackButtonClick}>Go Back</Button>
     </Container>
   );
 };

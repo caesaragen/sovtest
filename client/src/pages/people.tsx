@@ -1,14 +1,12 @@
 import React, { useState, Suspense, useEffect, useContext } from "react";
 import PersonCard from "../containers/personCard/personCard";
-import styled from "styled-components";
-import { mockdata } from '../data/mockdata';
 import { CardContainer, Container } from "../containers/personCard/cardStyles";
 import { useQuery, gql } from '@apollo/client';
 import { Person } from "../__generated__/graphql";
 import { PaginationContainer, PageButton, Pagination } from "../components/Pagination/Pagination";
 import SearchBox from "../components/searchBox/SearchBox";
 import Loader from "../components/Loader/Loader";
-import { Navigate, Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { PersonContext } from "../context/PersonContext";
 
 const GET_PEOPLE = gql(`
