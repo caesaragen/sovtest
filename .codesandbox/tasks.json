@@ -1,0 +1,20 @@
+{
+  "setupTasks": [
+    {
+      "name": "Install Client Dependencies",
+      "command": "cd client && npm install"
+    }
+  ],
+  "tasks": {
+    "start-server": {
+      "name": "start-server",
+      "command": "cd server && npx ts-node --esm ./src/index.ts",
+      "runAtStart": true
+    },
+    "start-client": {
+      "name": "start-client",
+      "command": "cd client && npm start",
+      "runAtStart": true
+    }
+  }
+}
