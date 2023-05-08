@@ -1,8 +1,8 @@
 import styled, { keyframes } from 'styled-components';
 
 interface LoaderProps {
-  size?: number;
-  color?: string;
+    size?: number;
+    color?: string;
 }
 
 const spin = keyframes`
