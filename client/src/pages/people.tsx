@@ -1,5 +1,5 @@
-import React, { useState, Suspense, useEffect } from "react";
-import PersonCard from "../containers/personCard/person-card";
+import React, { useState, Suspense, useEffect, useContext } from "react";
+import PersonCard from "../containers/personCard/personCard";
 import styled from "styled-components";
 import { mockdata } from '../data/mockdata';
 import { CardContainer, Container } from "../containers/personCard/cardStyles";
@@ -8,6 +8,8 @@ import { Person } from "../__generated__/graphql";
 import { PaginationContainer, PageButton, Pagination } from "../components/Pagination/Pagination";
 import SearchBox from "../components/searchBox/SearchBox";
 import Loader from "../components/Loader/Loader";
+import { Navigate, Link } from 'react-router-dom';
+import { PersonContext } from "../context/PersonContext";
 
 const GET_PEOPLE = gql(`
   query AllPeople($page: Int) {
@@ -29,14 +31,16 @@ const GET_PEOPLE = gql(`
 const People: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchResults, setSearchResults] = useState<Person[]>([]);
+  const {selectedPerson, setSelectedPerson} = useContext(PersonContext)
+
   const { loading, error, data } = useQuery(GET_PEOPLE, {
     variables: { page: currentPage, name: searchResults.length ? searchResults[0].name : "" },
   });
+
   const [pageCount, setPageCount] = useState(1)
   const [people, setPeople] = useState([]);
 
 
-  console.log(data)
 
   useEffect(() => {
     if (data) {
@@ -44,7 +48,7 @@ const People: React.FC = () => {
       setPageCount(Math.ceil(data.allPeople.count / 10))
     }
   }, [data]);
-  console.log(people)
+ 
   const handleSearch = (results: Person[]) => {
     setSearchResults(results);
   };
@@ -53,7 +57,11 @@ const People: React.FC = () => {
     setCurrentPage(page);
   };
 
-
+  const handleCardClick = (person: Person) => {
+    setSelectedPerson(person);
+    console.log(selectedPerson)
+    return <Navigate to={`/person/${person.name}`} />
+  };
 
   if (loading) return <Loader color="red" size={150} />;
   if (error) return <p>Error :</p>;
@@ -73,11 +81,12 @@ const People: React.FC = () => {
                 mass={person.mass}
                 gender={person.gender}
                 homeworld={person.homeworld}
+                handleClick={() => handleCardClick(person)}
               />
             );
           })
           : people.map((person: Person, index: number) => {
-            return (
+            return (            
               <PersonCard
                 key={index}
                 name={person.name}
@@ -85,6 +94,7 @@ const People: React.FC = () => {
                 mass={person.mass}
                 gender={person.gender}
                 homeworld={person.homeworld}
+                handleClick={() => handleCardClick(person)}
               />
             );
           })}

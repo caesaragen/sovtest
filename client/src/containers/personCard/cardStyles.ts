@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
+
 
 export const Container = styled.div`
 display: flex;
@@ -12,6 +14,7 @@ flex-wrap: wrap;
 justify-content: space-between;
 gap: 1rem;
 width: 100%;
+cursor: pointer;
 
 
 @media (max-width: 768px) {
@@ -25,16 +28,15 @@ width: 100%;
 }
 `;
 export const Card = styled.div`
-  width: calc(25% - 0.75rem);
   background-color:  ${props => props.theme.colors.secondary};
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 1rem;
   margin: 0.5rem;
 
-  @media (max-width: 768px) {
-    width: calc(33.33% - 0.5rem);
-  }
+  // @media (max-width: 768px) {
+  //   width: calc(33.33% - 0.5rem);
+  // }
 
   @media (max-width: 576px) {
     width: 100%
@@ -57,3 +59,8 @@ export const CardText = styled.p`
   font-size: ${props => props.theme.fontSizes.sm};
   margin: 0.5rem 0;
 `;
+export const CardLink = styled(Link)`
+text-decoration: none;
+color: inherit;
+`;
+

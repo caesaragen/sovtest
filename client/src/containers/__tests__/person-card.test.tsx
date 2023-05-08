@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import PersonCard from "../personCard/person-card";
+import PersonCard from "../personCard/personCard";
 import { ThemeProvider } from "styled-components";
 import theme from "../../styles/theme";
 
