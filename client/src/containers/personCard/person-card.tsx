@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardContent, CardText, CardTitle } from "./cardStyles";
+import { Person } from "../../__generated__/graphql";
 
 
 interface CardProps {
@@ -10,7 +11,7 @@ interface CardProps {
     homeworld: string;
 }
 
-const PersonCard: React.FC<CardProps> = ({
+const PersonCard: React.FC<Person> = ({
     name,
     height,
     mass,
