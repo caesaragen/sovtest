@@ -10,6 +10,7 @@ import typeDefs from './graphql/schema/schema.ts';
 import resolvers from './graphql/resolvers/resolvers.ts';
 import StarWarsAPI from './datasources/starwars-api.ts';
 
+const Port = process.env.PORT || 4000
 interface ContextValue {
     dataSources: {
         starWarsAPI: StarWarsAPI;
@@ -44,5 +45,5 @@ app.use(
   );
   
   // Modified server startup
-  await new Promise<void>((resolve) => httpServer.listen({ port: 4000 }, resolve));
+  await new Promise<void>((resolve) => httpServer.listen({ port: Port }, resolve));
   console.log(`🚀 Server ready at http://localhost:4000/`);
