@@ -21,7 +21,7 @@ const app = express();
 const httpServer = http.createServer(app);
 const corsOptions = {
     origin: '*',
-    credentials: true,
+    credentials: false,
 };
 
 app.use(cors(corsOptions));
