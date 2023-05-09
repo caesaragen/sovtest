@@ -3,13 +3,14 @@ import { useLazyQuery } from "@apollo/client";
 import { Person } from "../../__generated__/graphql";
 import { GET_PERSON } from "../../graphql/queries/getPersonDetails";
 
+
 interface SearchBoxProps {
-  onSearch: (results: Person[]) => void;
+  onSearch: (results: Person) => void;
 }
 
 const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
   const [name, setName] = useState("");
-  const [searchPerson, { loading, error, data }] = useLazyQuery<{ getPerson: Person[] }>(GET_PERSON);
+  const [searchPerson, { loading, error, data }] = useLazyQuery<{ getPerson: Person }>(GET_PERSON);
 
   const handleSearch = () => {
     searchPerson({ variables: { name } });
@@ -18,9 +19,10 @@ console.log(data)
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  if (data && data.getPerson) {
+  if (data && data.getPerson && data.getPerson) {
     onSearch(data.getPerson);
   }
+  
 
   return (
     <div>
