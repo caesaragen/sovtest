@@ -19,12 +19,17 @@ interface ContextValue {
 
 const app = express();
 const httpServer = http.createServer(app);
+const corsOptions = {
+    origin: "https://sovtest-graphql.onrender.com",
+    credentials: true
+  }
 app.use(cors())
 const server = new ApolloServer<ContextValue>({
     typeDefs,
     resolvers,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 });
+
 await server.start();
 
 app.use(
@@ -46,4 +51,4 @@ app.use(
   
   // Modified server startup
   await new Promise<void>((resolve) => httpServer.listen({ port: Port }, resolve));
-  console.log(`🚀 Server ready at http://localhost:4000/`);
+  console.log(`🚀 Server ready at ${Port}`);
