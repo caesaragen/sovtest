@@ -7,17 +7,19 @@ const PaginationContainer = styled.div`
   margin-top: 2rem;
 `;
 
-const PageButton = styled.button`
+const PageButton = styled.button<{ isCurrentPage: boolean }>`
   border: none;
   margin: 0 0.5rem;
   padding: 0.5rem 1rem;
-  background-color: #fff;
-  color: #000;
+  background-color: ${({ isCurrentPage }) =>
+    isCurrentPage ? "#000" : "#fff"};
+  color: ${({ isCurrentPage }) => (isCurrentPage ? "#fff" : "#000")};
   cursor: pointer;
 
   &:hover {
-    background-color: #000;
-    color: #fff;
+    background-color: ${({ isCurrentPage }) =>
+      isCurrentPage ? "#000" : "#ccc"};
+    color: ${({ isCurrentPage }) => (isCurrentPage ? "#fff" : "#000")};
   }
 `;
 
@@ -50,7 +52,7 @@ const Pagination: React.FC<Props> = ({
         <PageButton
           key={page}
           onClick={() => handlePageClick(page)}
-          disabled={page === currentPage}
+          isCurrentPage={page === currentPage}
         >
           {page}
         </PageButton>

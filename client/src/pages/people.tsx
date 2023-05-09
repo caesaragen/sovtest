@@ -1,30 +1,19 @@
 import React, { useState, Suspense, useEffect, useContext } from "react";
 import PersonCard from "../containers/personCard/personCard";
 import { CardContainer, Container } from "../containers/personCard/cardStyles";
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { Person } from "../__generated__/graphql";
-import { PaginationContainer, PageButton, Pagination } from "../components/Pagination/Pagination";
+import { PaginationContainer,Pagination } from "../components/Pagination/Pagination";
 import SearchBox from "../components/searchBox/SearchBox";
-import Loader from "../components/Loader/Loader";
+import Loader from "../components/common/Loader/Loader";
 import { Navigate } from 'react-router-dom';
 import { PersonContext } from "../context/PersonContext";
+import ErrorCard from "../components/common/Error/Error";
+import { GET_PEOPLE } from "../graphql/queries/getAllPeople";
+import { GET_PERSON } from "../graphql/queries/getPersonDetails";
 
-const GET_PEOPLE = gql(`
-  query AllPeople($page: Int) {
-    allPeople(page: $page) {
-      count
-      next
-      previous
-      results {
-        gender
-        height
-        homeworld
-        mass
-        name
-      }
-    }
-  }
-`);
+
+
 
 const People: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -62,10 +51,10 @@ const People: React.FC = () => {
   };
 
   if (loading) return <Loader color="red" size={150} />;
-  if (error) return <p>Error :</p>;
+  if (error) return <ErrorCard message="An error occurred"/>
 
   return (
-    <Suspense fallback={Loader}>
+    <Suspense fallback={<Loader color="red" size={150} />}>
       <Container>
       <SearchBox onSearch={handleSearch} />
       <CardContainer>

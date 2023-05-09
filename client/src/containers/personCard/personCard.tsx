@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { Card, CardContent, CardText, CardTitle, CardLink } from "./cardStyles";
 import { Person } from "../../__generated__/graphql";
 
 interface CardProps extends Person {
-    handleClick: () => void;
+    handleClick?: () => void;
 }
 
 const PersonCard: React.FC<CardProps> = ({

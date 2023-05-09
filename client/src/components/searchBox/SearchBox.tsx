@@ -1,14 +1,7 @@
 import React, { useState } from "react";
-import { useLazyQuery, gql } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import { Person } from "../../__generated__/graphql";
-
-const SEARCH_PERSON = gql`
-  query GetPerson($name: String!) {
-    getPerson(name: $name) {
-      name
-    }
-  }
-`;
+import { GET_PERSON } from "../../graphql/queries/getPersonDetails";
 
 interface SearchBoxProps {
   onSearch: (results: Person[]) => void;
@@ -16,14 +9,14 @@ interface SearchBoxProps {
 
 const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
   const [name, setName] = useState("");
-  const [searchPerson, { loading, error, data }] = useLazyQuery(SEARCH_PERSON);
+  const [searchPerson, { loading, error, data }] = useLazyQuery<{ getPerson: Person[] }>(GET_PERSON);
 
   const handleSearch = () => {
     searchPerson({ variables: { name } });
   };
-
+console.log(data)
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
   if (data && data.getPerson) {
     onSearch(data.getPerson);
