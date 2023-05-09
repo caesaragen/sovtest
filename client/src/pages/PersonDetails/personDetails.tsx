@@ -14,7 +14,7 @@ const PersonDetails: React.FC<Props> = () => {
   };
   return (
     <Container>
-      <h1>Person Details</h1>
+      <h1>{`${selectedPerson.name}'s Details`}</h1>
       <Detail>
         <Label>Name:</Label> {selectedPerson.name}
       </Detail>
