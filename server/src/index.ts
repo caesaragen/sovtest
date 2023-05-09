@@ -20,8 +20,8 @@ interface ContextValue {
 const app = express();
 const httpServer = http.createServer(app);
 const corsOptions = {
-    origin: '*',
-    credentials: false,
+    origin: ['https://studio.apollographql.com', "http://localhost:3000"],
+    credentials: true,
 };
 
 app.use(cors(corsOptions));
@@ -30,13 +30,14 @@ const server = new ApolloServer<ContextValue>({
     typeDefs,
     resolvers,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    introspection: true,
 });
 
 await server.start();
 
 app.use(
     '/',
-    // cors<cors.CorsRequest>({ origin: ['https://sovtest-graphql.onrender.com', 'https://studio.apollographql.com', "http://localhost:300"] , credentials: true, }),
+    cors<cors.CorsRequest>({ origin: ['https://sovtest-graphql.onrender.com', 'https://studio.apollographql.com', "http://localhost:300"] , credentials: true, }),
     bodyParser.json(),
     expressMiddleware(server, {
         context: async () => {
