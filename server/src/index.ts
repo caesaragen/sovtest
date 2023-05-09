@@ -29,7 +29,7 @@ await server.start();
 
 app.use(
     '/',
-    cors<cors.CorsRequest>(),
+    cors<cors.CorsRequest>({ origin: ['https://sovtest-graphql.onrender.com', 'https://studio.apollographql.com'] }),
     bodyParser.json(),
     expressMiddleware(server, {
         context: async () => {
