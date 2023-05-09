@@ -20,7 +20,7 @@ interface ContextValue {
 const app = express();
 const httpServer = http.createServer(app);
 const corsOptions = {
-    origin: ['https://sovtest-graphql.onrender.com', 'https://studio.apollographql.com'],
+    origin: ['https://sovtest-graphql.onrender.com', 'https://studio.apollographql.com', "http://localhost:3000"],
     credentials: true,
 };
 
@@ -36,7 +36,7 @@ await server.start();
 
 app.use(
     '/',
-    cors<cors.CorsRequest>({ origin: ['https://sovtest-graphql.onrender.com', 'https://studio.apollographql.com'] }),
+    cors<cors.CorsRequest>({ origin: ['https://sovtest-graphql.onrender.com', 'https://studio.apollographql.com', "http://localhost:3000"] }),
     bodyParser.json(),
     expressMiddleware(server, {
         context: async () => {
