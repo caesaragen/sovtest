@@ -21,10 +21,11 @@ const app = express();
 const httpServer = http.createServer(app);
 const corsOptions = {
     origin: ['https://sovtest-graphql.onrender.com', 'https://studio.apollographql.com', "http://localhost:3000"],
-    credentials: true,
+    // credentials: true,
 };
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 const server = new ApolloServer<ContextValue>({
     typeDefs,
