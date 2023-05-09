@@ -36,7 +36,7 @@ const People: React.FC = () => {
   const [people, setPeople] = useState([]);
 
 
-  console.log(data)
+  console.log(error)
 
   useEffect(() => {
     if (data) {
