@@ -20,10 +20,12 @@ interface ContextValue {
 const app = express();
 const httpServer = http.createServer(app);
 const corsOptions = {
-    origin: "https://sovtest-graphql.onrender.com",
-    credentials: true
-  }
-app.use(cors())
+    origin: ['https://sovtest-graphql.onrender.com', 'https://studio.apollographql.com'],
+    credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 const server = new ApolloServer<ContextValue>({
     typeDefs,
     resolvers,
