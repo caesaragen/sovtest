@@ -23,7 +23,7 @@ const resolvers = {
                 dataSources.starWarsAPI.getPerson(name)
                     .then((response: any) => {
                         const person = response[0] || {};
-                        console.log(person);
+                        // console.log(person);
                         if (Object.keys(person).length === 0) {
                             reject(new Error(`Person with name ${name} not found`));
                         }

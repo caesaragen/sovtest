@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface ErrorCardProps {
-  message: string;
+  message?: string;
 }
 
 const ErrorCard = ({ message }: ErrorCardProps) => {
