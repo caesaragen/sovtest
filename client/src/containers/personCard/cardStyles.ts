@@ -63,4 +63,18 @@ export const CardLink = styled(Link)`
 text-decoration: none;
 color: inherit;
 `;
+export const Button = styled.button`
+  margin-top: 1.5rem;
+  padding: 0.5rem 1.5rem;
+  background-color: ${props => props.theme.colors.primary};
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+  }
+`;
 

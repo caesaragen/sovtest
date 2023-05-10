@@ -47,14 +47,19 @@ const People: React.FC = () => {
     console.log(selectedPerson)
     return <Navigate to={`/person/${person.name}`} />
   };
-
+const onBackClick = () => {
+  setSearchResults({})
+}
   if (loading) return <Loader color="red" size={150} />;
   if (error) return <ErrorCard message="An error occurred" />
 
   return (
     <Suspense fallback={<Loader color="red" size={150} />}>
       <Container>
+      {Object.keys(searchResults).length
+            ? (null) :
         <SearchBox onSearch={handleSearch} />
+      }
         <CardContainer>
           {Object.keys(searchResults).length
             ? (
@@ -66,6 +71,8 @@ const People: React.FC = () => {
                 gender={searchResults.gender}
                 homeworld={searchResults.homeworld}
                 handleClick={() => handleCardClick(searchResults)}
+                showBackButton={true}
+                onBackClick={onBackClick}
               />
             )
             : people.map((person: Person, index: number) => {
@@ -82,6 +89,8 @@ const People: React.FC = () => {
               );
             })}
         </CardContainer>
+        {Object.keys(searchResults).length
+            ? (null) :
         <PaginationContainer>
           <Pagination
             currentPage={currentPage}
@@ -89,6 +98,7 @@ const People: React.FC = () => {
             onPageChange={handlePageChange}
           />
         </PaginationContainer>
+        }
       </Container>
     </Suspense>
   );
